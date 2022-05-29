@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 
 import categories from './routes/categoriesRouter.js';
 import games from './routes/gamesRouter.js';
+import customers from './routes/customersRouter.js';
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ dotenv.config();
 
 app.use(categories);
 app.use(games);
+app.use(customers);
 
 const port = process.env.PORT;
 app.listen(port, () => {
