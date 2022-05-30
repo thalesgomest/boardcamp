@@ -27,4 +27,9 @@ const querySchema = joi.object({
     desc: joi.boolean(),
 });
 
-export { rentalSchema, querySchema };
+const metricsQuerySchema = joi.object({
+    startDate: joi.date().iso(),
+    endDate: joi.date().iso(),
+});
+
+export { rentalSchema, querySchema, metricsQuerySchema };

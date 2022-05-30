@@ -1,5 +1,9 @@
 import connection from '../config/database.js';
-import { rentalSchema, querySchema } from '../schemas/rentalSchema.js';
+import {
+    rentalSchema,
+    querySchema,
+    metricsQuerySchema,
+} from '../schemas/rentalSchema.js';
 
 export default class RentalsMiddleware {
     static bodyValidation = async (req, res, next) => {
@@ -64,6 +68,23 @@ export default class RentalsMiddleware {
         }
 
         res.locals.query = value;
+
+        next();
+    };
+
+    static checkMetricsQueryString = (req, res, next) => {
+        const { value, error } = metricsQuerySchema.validate(req.query, {
+            abortEarly: false,
+        });
+
+        if (error) {
+            return res.status(400).json({
+                message: 'Validation failed',
+                error: error.details.map((err) => err.message),
+            });
+        }
+
+        res.locals.metricsQuery = value;
 
         next();
     };

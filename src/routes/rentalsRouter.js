@@ -15,5 +15,10 @@ router.post(
 
 router.post('/rentals/:id/return', Rentals.returnRental);
 router.delete('/rentals/:id', Rentals.deleteRental);
+router.get(
+    '/rentals/metrics',
+    RentalsMiddleware.checkMetricsQueryString,
+    Rentals.getMetrics
+);
 
 export default router;
