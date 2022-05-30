@@ -18,7 +18,8 @@ app.use(games);
 app.use(customers);
 app.use(rentals);
 
-const PORT = process.env.PORT;
 app.listen(process.env.PORT, () => {
-    console.log(chalk.bold.yellow(`Server running on port ${PORT}`));
+    console.log(
+        chalk.bold.yellow(`Server running on port ${process.env.PORT}`)
+    );
 });
